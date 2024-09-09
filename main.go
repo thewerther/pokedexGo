@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"internal/pokeApi"
+	"time"
+)
 
 func main() {
-  fmt.Println("Hello, World!")
+  pokeClient := pokeApi.NewClient(5 * time.Second, time.Minute * 5)
+  cfg := &config{
+    caughtPokemon: map[string]pokeApi.Pokemon{},
+    pokeClient: pokeClient,
+  }
+
+  replLoop(cfg)
 }
